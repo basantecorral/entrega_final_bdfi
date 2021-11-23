@@ -85,6 +85,8 @@ Se ha contruido una imagen para kafka, otra para la predicción de vuelos y otra
 
 Adicionalmente, se han desarrollado unos scripts que facilitan su despliegue
 
+*Descomprimir el archivo practica_big_data_2019.zip ya que se han hecho algunas modificaciones en el código para poder conectar los servicios en Docker*
+
 ***Crear el escenario***
 
 Crea las imágenes a partir de los Dockerfile
