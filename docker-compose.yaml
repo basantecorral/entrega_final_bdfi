@@ -1,0 +1,34 @@
+version: '3'
+services:
+  zookeeper_bdfi:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper_bdfi
+    ports:
+      - "2181:2181"
+  kafka_bdfi:
+    image: kafka_bdfi:latest
+    container_name: kafka_bdfi
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper_bdfi
+  mongo_bdfi:
+    image: mongo:4.2.17
+    container_name: mongo_bdfi
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./practica_big_data_2019:/practica_big_data_2019
+  flight_predictor_bdfi:
+    image: flight_predictor_bdfi:latest
+    container_name: flight_predictor_bdfi
+    depends_on:
+      - kafka_bdfi
+      - mongo_bdfi
+  web_bdfi:
+    image: web_bdfi:latest
+    container_name: web_bdfi
+    ports:
+      - "5000:5000"
+    depends_on:
+      - flight_predictor_bdfi
